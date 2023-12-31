@@ -1,5 +1,7 @@
 package com.spring.jdbc.jdbc;
 
+import java.util.List;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -21,7 +23,7 @@ public class App
         StudentDao stuDao = context.getBean("studentDao",StudentDao.class);
         
 //        inserting new data
-        Student st= new Student(7,"Lana", "usa");
+        Student st= new Student(9,"dani", "usa");
         int result = stuDao.insert(st);
         System.out.println("Student added: "+result);
         
@@ -33,5 +35,17 @@ public class App
 //        deleting the data with id
         int result2 = stuDao.delete(6);
         System.out.println("Student deleted: "+result2);
+        
+//        selecting one student data with id
+        Student student = stuDao.getStudent(1);
+        System.out.println("Student with id: "+student);
+        
+//        selecting all list of students
+        List<Student> allstu = stuDao.getAllStudents();
+        System.out.println("All Students list:");
+        for(Student stud: allstu)
+        {
+        	System.out.println(stud);
+        }
     }
 }
